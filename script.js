@@ -29,6 +29,8 @@ window.addEventListener("load", function() {
         fuelLevel.innerHTML = `There is not enough fuel for the journey`;
         launchStatus.innerHTML = `Shuttle not ready for Launch.`
      }
+
+     event.preventDefault();
    });
 })
 
