@@ -5,31 +5,29 @@ window.addEventListener("load", function() {
    let copilotName = document.querySelector("input[name=copilotName]");
    let fuelLevel = document.querySelector("input[name=fuelLevel]");
    let cargoMass = document.querySelector("input[name=cargoMass]");
-
+   let faultyItems = document.getElementById("faultyItems");
+   let launchStatus = document.getElementById("launchStatus");
+   
    formSubmit.addEventListener("click", (event) => {
-      if (pilotName.value == "") {
-         window.alert("you must enter your pilot's name");
+
+      if (pilotName.value == "" || copilotName.value == "") {
+         window.alert("you must provide an answer for each field!");
          event.preventDefault();
       }
-      if (copilotName.value == "") {
-         window.alert("you need to enter your copilot's name!");
-         event.preventDefault();
-      }
-      if (fuelLevel.value == "") {
-         window.alert("you need a valid fuel level");
-         event.preventDefault()
-      }
-      if (cargoMass.value == "") {
-         window.alert("you need a valid cargo mass");
-         event.preventDefault();
-      }
+      if (isNaN(Number(fuelLevel.value)) == true || isNaN(Number(cargoMass.value)) == true) {
+        window.alert("you must provide correct data.");
+        event.preventDefault();
+     }
+
    });
 })
 
 /*
 
-   let faultyItems = document.getElementById("faultyItems");
-   let launchStatus = document.getElementById("launchStatus");
+id="pilotStatus"
+id="copilotStatus"
+id="fuelStatus"
+id="cargoStatus"
 
    let li = document.getElementById("pilotStatus");
    li.addEventListener("submit", function(){
