@@ -17,7 +17,7 @@ window.addEventListener("load", function() {
               `});
           });
 
-   let formSubmit = document.getElementById("formSubmit");
+   let form = document.querySelector("form");
    let pilotName = document.querySelector("input[name=pilotName]");
    let copilotName = document.querySelector("input[name=copilotName]");
    let fuelLevel = document.querySelector("input[name=fuelLevel]");
@@ -27,17 +27,15 @@ window.addEventListener("load", function() {
    let copilotStatus = document.getElementById("copilotStatus");
    let faultyItems = document.getElementById("faultyItems");
    
-   formSubmit.addEventListener("click", (event) => {
+   form.addEventListener("submit", function(event) {
+      event.preventDefault();
 // validation for form entries
       if (pilotName.value == "" || copilotName.value == "" || fuelLevel.value == "" || cargoMass.value == "") {
-         window.alert("You must provide an answer for each field!");
-         event.preventDefault();
-      }
-      // validation to make sure data type is correct
-      if (isNaN(Number(fuelLevel.value)) == true || isNaN(Number(cargoMass.value)) == true || isNaN(Number(pilotName.value)) == false || isNaN(Number(copilotName.value)) == false) {
-        window.alert("Enter correct data in each field.");
-        event.preventDefault();
-     }
+         alert("You must provide an answer for each field!");
+      }// validation to make sure data type is correct
+      else if (isNaN(Number(fuelLevel.value)) == true || isNaN(Number(cargoMass.value)) == true || isNaN(Number(pilotName.value)) == false || isNaN(Number(copilotName.value)) == false) {
+         alert("Enter correct data in each field.");
+     } else {
 // Shuttle Requirement Updates
    pilotStatus.innerHTML = `Pilot ${pilotName.value} is ready for launch`;
    copilotStatus.innerHTML = `Co-pilot ${copilotName.value} is ready for launch`;
@@ -58,10 +56,9 @@ window.addEventListener("load", function() {
         launchStatus.innerHTML = `Shuttle Ready For Launch.`;
         launchStatus.style.color = "green";
      }
-
-     event.preventDefault();
+   }
    });
-})
+});
 
 /* This block of code shows how to format the HTML once you fetch some planetary JSON!
 <h2>Mission Destination</h2>
